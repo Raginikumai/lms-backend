@@ -9,4 +9,5 @@ export const ENV = {
   DATABASE_URL: process.env.DATABASE_URL!,
   JWT_SECRET: process.env.JWT_SECRET!,
   PORT: Number(process.env.PORT) || 5000,
+  BCRYPT_SALT_ROUNDS: Number(process.env.BCRYPT_SALT_ROUNDS)|| 10,
 };

@@ -1,5 +1,33 @@
 import { z } from "zod";
 
+
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     RegisterInput:
+ *       type: object
+ *       required:
+ *         - username
+ *         - email
+ *         - password
+ *       properties:
+ *         username:
+ *           type: string
+ *           example: raginix
+ *         email:
+ *           type: string
+ *           example: ragini@example.com
+ *         password:
+ *           type: string
+ *           example: "123456"
+ *         first_name:
+ *           type: string
+ *           example: Ragini
+ *         last_name:
+ *           type: string
+ *           example: Sharma
+ */
 export const registerSchema = z.object({
   username: z
     .string()
