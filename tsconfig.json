@@ -2,29 +2,35 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    "rootDir": "./src",
-    "outDir": "./dist",
+    // "rootDir": "./src", // Your source code will be in the 'src' folder
+    "outDir": "./dist", // Compiled JavaScript will go into the 'dist' folder
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "esnext",
-    "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
+    "module": "commonjs", // Use Node.js's native ES module resolution
+    "target": "es2022", // Compile to modern JavaScript (ES2022)
+    "lib": ["es2022"], // Include standard library definitions for ES2022
+    "types": ["node"], // Include type definitions for Node.js
 
     // Other Outputs
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    "sourceMap": true, // Generate source maps for easier debugging
+    // "declaration": true, // Optional: Generate .d.ts files (useful for libraries, less critical for apps)
+    // "declarationMap": true, // Optional: Generate source maps for .d.ts files
 
-    // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+    // Stricter Typechecking Options (Core Strictness)
+    "strict": true, // Enables all strict type-checking options (recommended!)
+    "noUncheckedIndexedAccess": true, // Helps prevent errors when accessing array/object elements
+    "exactOptionalPropertyTypes": true, // Stricter checking for optional properties
 
-    // Style Options
+    // Module Resolution
+    "moduleResolution": "node", // Use Node.js's native ES module resolution strategy
+    "verbatimModuleSyntax": false, // Ensures module imports/exports are preserved as written
+    "isolatedModules": true, // Ensures each file can be compiled independently (good for build tools)
+    "noUncheckedSideEffectImports": true, // Stricter checking for imports with side effects
+    "moduleDetection": "force", // Force module detection for all files
+    "esModuleInterop": true,
+    
+    // Style Options (Optional, can be enabled later if desired)
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,
     // "noUnusedLocals": true,
@@ -33,12 +39,14 @@
     // "noPropertyAccessFromIndexSignature": true,
 
     // Recommended Options
-    "strict": true,
-    // "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true,
-  }
+    "skipLibCheck": true // Skip type checking of declaration files (speeds up compilation)
+  },
+  "include": [
+    "src/**/*.ts", // Include all .ts files
+    "src/types/**/*.d.ts",
+    "prisma/**/*.ts" // Include Prisma config files
+, "prisma.config.ts"  ],
+  "exclude": [
+    "node_modules" // It's good practice to explicitly exclude node_modules
+  ]
 }

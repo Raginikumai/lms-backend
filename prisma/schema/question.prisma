@@ -1,0 +1,22 @@
+// prisma/models/question.prisma
+
+model Question {
+  id            String    @id @default(uuid()) @map("id") // uuid PRIMARY KEY
+  questionText  String    @map("question_text") // varchar
+  hint          String?   // varchar (nullable)
+  explanation   String?   // text (nullable)
+
+  // Foreign key for test_id
+  testId        String    @map("test_id") // uuid NOT NULL
+  // Relation to the Test model
+  test          Test      @relation(fields: [testId], references: [id])
+
+  createdAt     DateTime  @default(now()) @map("created_at") // timestamp
+  updatedAt     DateTime  @updatedAt @map("updated_at") // timestamp
+
+  // Relations (back-relations from other models)
+  options       Option[]
+  submissions   Submission[]
+
+  @@map("questions")
+}
