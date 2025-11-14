@@ -7,7 +7,7 @@
     "start:dev": "tsx src/server.ts",
     "build": "tsc",
     "start": "node dist/src/server.js",
-    "postinstall": "npx prisma generate && npm run build",
+    "postinstall": "npx prisma generate",
     "lint": "eslint . --ext .ts --fix",
     "lint:check": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
