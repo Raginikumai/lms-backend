@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 prisma.$connect()
   .then(() => console.log("Connected to PostgreSQL via Prisma"))
-  .catch((err) => {
+  .catch((err: unknown) => {
     console.error("❌ Database connection failed:", err);
     process.exit(1);
   });
