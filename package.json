@@ -6,7 +6,7 @@
     "dev": "tsx watch src/server.ts",
     "start:dev": "tsx src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "postinstall": "npm run build",
     "lint": "eslint . --ext .ts --fix",
     "lint:check": "eslint . --ext .ts",

@@ -4,8 +4,7 @@
     // File Layout
     // "rootDir": "./src", // Your source code will be in the 'src' folder
     "outDir": "./dist", // Compiled JavaScript will go into the 'dist' folder
-    "outDir": "./build",
-    "outDir": "./dist/src",
+    "rootDir": ".",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
