@@ -7,7 +7,7 @@
     "start:dev": "tsx src/server.ts",
     "build": "tsc",
     "start": "node dist/src/server.js",
-    "postinstall": "npx prisma generate",
+    "postinstall": "npx dotenv -e .env -- npx prisma generate",
     "lint": "eslint . --ext .ts --fix",
     "lint:check": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
@@ -29,6 +29,7 @@
     "@typescript-eslint/eslint-plugin": "^8.46.3",
     "@typescript-eslint/parser": "^8.46.3",
     "copyfiles": "^2.4.1",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^16.5.0",
@@ -54,9 +55,6 @@
     "zod": "^4.1.12"
   },
   "engines": {
-  "node": "20.x"
-  },
-  "prisma": {
-    "schema": "prisma/schema/schema.prisma"
+    "node": "20.x"
   }
 }
