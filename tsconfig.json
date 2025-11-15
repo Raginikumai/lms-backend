@@ -46,7 +46,7 @@
     "src/**/*.ts", // Include all .ts files
     "src/types/**/*.d.ts",
     "prisma/**/*.ts", // Include Prisma config files
-    "prisma.config.ts"  
+    // "prisma.config.ts"  
   ],
   "exclude": [
     "node_modules" // It's good practice to explicitly exclude node_modules
