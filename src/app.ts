@@ -1,6 +1,6 @@
-import express from "express";
-import authRoutes from "./api/v1/auth/auth.routes";
-import { swaggerUi, swaggerSpec } from "./config/swagger";
+import express from 'express';
+import authRoutes from './api/v1/auth/auth.routes';
+import { swaggerUi, swaggerSpec } from './config/swagger';
 
 const app = express();
 

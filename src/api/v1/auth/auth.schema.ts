@@ -1,5 +1,4 @@
-import { z } from "zod";
-
+import { z } from 'zod';
 
 /**
  * @openapi
@@ -29,14 +28,9 @@ import { z } from "zod";
  *           example: Sharma
  */
 export const registerSchema = z.object({
-  username: z
-    .string()
-    .trim()
-    .min(3, "username must be at least 3 characters"),
-  email: z.email("invalid email"),
-  password: z
-    .string()
-    .min(8, "password must be at least 8 characters"), 
+  username: z.string().trim().min(3, 'username must be at least 3 characters'),
+  email: z.email('invalid email'),
+  password: z.string().min(8, 'password must be at least 8 characters'),
   first_name: z.string().trim().optional(),
   last_name: z.string().trim().optional(),
 });

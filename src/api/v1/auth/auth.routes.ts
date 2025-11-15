@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { register } from "./auth.controller";
+import { Router } from 'express';
+import { register } from './auth.controller';
 
 const router = Router();
 
@@ -23,6 +23,6 @@ const router = Router();
  *         description: Invalid request body
  */
 
-router.post("/register", register);
+router.post('/register', register);
 
 export default router;
