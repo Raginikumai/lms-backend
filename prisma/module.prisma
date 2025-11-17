@@ -1,0 +1,20 @@
+// prisma/models/module.prisma
+
+model Module {
+  id          String    @id @default(uuid()) @map("id") // uuid PRIMARY KEY
+  title       String    // varchar
+
+  // Foreign key for course_id
+  courseId    String    @map("course_id") // uuid NOT NULL
+  // Relation to the Course model
+  course      Course    @relation(fields: [courseId], references: [id])
+
+  order       Int?      @map("order") // integer (nullable)
+  createdAt   DateTime  @default(now()) @map("created_at") // timestamp
+  updatedAt   DateTime  @updatedAt @map("updated_at") // timestamp
+
+  // Relations (back-relations from other models)
+  lessons     Lesson[]
+
+  @@map("modules")
+}

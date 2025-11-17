@@ -1,0 +1,38 @@
+// prisma/models/user.prisma
+
+enum RoleEnum {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
+
+model User {
+  id                String    @id @default(uuid()) @map("id") // uuid PRIMARY KEY
+  firstName         String?   @map("first_name") // varchar (nullable)
+  lastName          String?   @map("last_name") // varchar (nullable)
+  fullName          String?   @map("full_name") // varchar (nullable)
+  username          String    @unique // varchar UNIQUE
+  role              RoleEnum  @default(STUDENT) // role_enum
+  email             String    @unique // varchar UNIQUE
+  password          String    // varchar
+  profilePic        String?   @map("profile_pic") // varchar (nullable)
+  gender            String?   // varchar (nullable)
+  createdAt         DateTime  @default(now()) @map("created_at") // timestamp
+  updatedAt         DateTime  @updatedAt @map("updated_at") // timestamp
+  status            String    @default("active") // varchar DEFAULT 'active'
+  profileImageUrl   String?
+
+  // Relations (back-relations from other models)
+  // A User can be an instructor for many Courses
+  instructedCourses Course[] @relation("InstructorCourses")
+  // A User can be a creator for many Courses (created_by)
+  createdCourses    Course[] @relation("CreatedByCourses")
+  // A User can be a student in many Enrollments
+  enrollments       Enrollment[]
+  // A User can make many Submissions
+  submissions       Submission[]
+  // A User can complete many Lessons
+  lessonCompletions LessonCompletion[]
+
+  @@map("users") // Maps the Prisma model name 'User' to the 'users' table in the database
+}

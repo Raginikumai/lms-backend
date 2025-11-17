@@ -1,0 +1,32 @@
+// prisma/models/course.prisma
+
+model Course {
+  id            String    @id @default(uuid()) @map("id") // uuid PRIMARY KEY
+  title         String    // varchar
+  body          String?   // text (nullable)
+  description   String?   // text (nullable)
+
+  // Foreign key for instructor_id
+  instructorId  String    @map("instructor_id") // uuid
+  // Relation to the User model (instructor)
+  instructor    User      @relation("InstructorCourses", fields: [instructorId], references: [id])
+
+  // Foreign key for created_by
+  createdById   String    @map("created_by") // integer NOT NULL (changed to String to match User.id)
+  // Relation to the User model (creator)
+  createdBy     User      @relation("CreatedByCourses", fields: [createdById], references: [id])
+
+  createdAt     DateTime  @default(now()) @map("created_at") // timestamp
+  // Note: Your SQL has updated_by as integer, but it should likely reference User.id (uuid).
+  // For now, I'll make it String? and you can decide if you want a relation here.
+  // If you want a relation, you'd need an `updatedById` field and a relation like `updatedBy User @relation("UpdatedByCourses", fields: [updatedById], references: [id])`
+  updatedById   String   @map("updated_by") // Assuming this should be nullable or have a default
+  updatedAt     DateTime  @updatedAt @map("updated_at") // timestamp
+  status        String    @default("active") // varchar DEFAULT 'active'
+
+  // Relations (back-relations from other models)
+  modules       Module[]
+  enrollments   Enrollment[]
+
+  @@map("courses") // Maps the Prisma model name 'Course' to the 'courses' table in the database
+}

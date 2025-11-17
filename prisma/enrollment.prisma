@@ -1,0 +1,22 @@
+// prisma/models/enrollment.prisma
+
+model Enrollment {
+  id          String    @id @default(uuid()) @map("id") // uuid PRIMARY KEY
+
+  // Foreign key for course_id
+  courseId    String    @map("course_id") // uuid NOT NULL
+  // Relation to the Course model
+  course      Course    @relation(fields: [courseId], references: [id])
+
+  // Foreign key for student_id
+  studentId   String    @map("student_id") // uuid NOT NULL
+  // Relation to the User model (student)
+  student     User      @relation(fields: [studentId], references: [id])
+
+  createdAt   DateTime  @default(now()) @map("created_at") // timestamp
+  updatedAt   DateTime  @updatedAt @map("updated_at") // timestamp
+
+  // Composite unique index
+  @@unique([courseId, studentId])
+  @@map("enrollments")
+}

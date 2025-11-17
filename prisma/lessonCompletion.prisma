@@ -1,0 +1,21 @@
+// prisma/models/lessonCompletion.prisma
+
+model LessonCompletion {
+  id          String    @id @default(uuid()) @map("id") // uuid PRIMARY KEY
+
+  // Foreign key for student_id
+  studentId   String    @map("student_id") // uuid NOT NULL
+  // Relation to the User model (student)
+  student     User      @relation(fields: [studentId], references: [id])
+
+  // Foreign key for lesson_id
+  lessonId    String    @map("lesson_id") // uuid NOT NULL
+  // Relation to the Lesson model
+  lesson      Lesson    @relation(fields: [lessonId], references: [id])
+
+  completedAt DateTime  @default(now()) @map("completed_at") // timestamp DEFAULT (now())
+
+  // Composite unique index
+  @@unique([studentId, lessonId])
+  @@map("lesson_completions")
+}

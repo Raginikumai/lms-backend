@@ -1,0 +1,20 @@
+// prisma/models/test.prisma
+
+model Test {
+  id          String    @id @default(uuid()) @map("id") // uuid PRIMARY KEY
+  title       String    // varchar
+  mode        String    @default("test") // varchar DEFAULT 'test'
+
+  // Foreign key for lesson_id
+  lessonId    String    @map("lesson_id") // uuid NOT NULL
+  // Relation to the Lesson model
+  lesson      Lesson    @relation(fields: [lessonId], references: [id])
+
+  createdAt   DateTime  @default(now()) @map("created_at") // timestamp
+  updatedAt   DateTime  @updatedAt @map("updated_at") // timestamp
+
+  // Relations (back-relations from other models)
+  questions   Question[]
+
+  @@map("tests")
+}
