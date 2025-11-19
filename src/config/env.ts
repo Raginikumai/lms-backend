@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-// console.log("ACTUAL DB URL IN SERVER =>", process.env.DATABASE_URL);
+// logger.info("ACTUAL DB URL IN SERVER =>", process.env.DATABASE_URL);
 if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL missing!');
 if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET missing!');
 
