@@ -1,14 +1,17 @@
-import { type Request, type Response } from 'express';
-import { registerUser } from './auth.service';
+import { type Request, type Response, type NextFunction } from 'express';
+import * as userService from '../users/user.service';
+import * as authService from './auth.service';
 import { registerSchema } from './auth.schema';
 
-export const register = async (req: Request, res: Response) => {
-  const parsed = registerSchema.safeParse(req.body);
-  if (!parsed.success)
-    return res
-      .status(400)
-      .json({ success: false, errors: parsed.error.issues.map((i) => i.message), data: null });
+export const register = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const validatedData = registerSchema.parse(req.body);
+    const newUser = await userService.createUser(validatedData);
+    const token = authService.generateAuthToken(newUser);
 
-  const user = await registerUser(parsed.data);
-  res.status(201).json({ success: true, user });
+    res.status(201).json({ success: true, data: { user: newUser, token: token } });
+
+  } catch (error) {
+    next(error);
+  }
 };
