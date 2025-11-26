@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "server.ts",
   "scripts": {
-    "postinstall": "npx dotenv -e .env -- npx prisma generate",
+    "postinstall": "npx prisma generate",
     "build": "tsc",
+    "dbreset": "npx prisma migrate reset",
     "start": "node dist/src/server.js",
     "start:dev": "tsx src/server.ts",
     "dev": "tsx watch src/server.ts",
